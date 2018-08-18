@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 const items = ['item 1', 'item 2']
@@ -7,10 +7,13 @@ const items = ['item 1', 'item 2']
 class ListExample extends React.Component {
   render() {
     return (
-      <FlatList
-        data={this.props.tasks}
-        renderItem={({item}) => <Text>{item}</Text>}
-      />
+      <View>
+        <FlatList
+          data={this.props.tasks}
+          renderItem={({item}) => <Text>{item}</Text>}
+        />
+        <Button onPress={this.props.onLogoutPress} title="LOGOUT" />
+      </View>
     )
   }
 }
