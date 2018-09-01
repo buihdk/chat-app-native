@@ -2,7 +2,6 @@ import firebase from './utils/firebase';
 
 export const loadMessages = () => (dispatch) => {
   dispatch(startLoadMessages());
-
   firebase.database().ref('messages').once('value', (snapshot) => {
     const data = snapshot.val();
     const formattedData = Object.keys(data).map(key => ({ key, ...data[key] }));

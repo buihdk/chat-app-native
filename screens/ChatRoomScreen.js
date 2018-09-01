@@ -9,30 +9,25 @@ class ChatRoomScreen extends React.Component {
   componentDidMount() {
     this.props.loadMessages();
   }
+  renderLoading = () => <ActivityIndicator size='large' style={{marginTop: '50%'}}/>;
 
   render() {
-    // console.log(this.props.messages)
     return (
-      <View style={{flex: 1}}>
-        {this.props.isLoading ? <ActivityIndicator size='large'/> :
-          <GiftedChat
-            messages={this.props.messages}
-            onSend={(text) => {
-              this.props.sendMessage(text[0]);
-            }}
-            user={{
-              _id: 3,
-              avatar: 'https://randomuser.me/api/portraits/men/40.jpg',
-              name: this.props.currentUser,
-            }}
-            alwaysShowSend={true}
-            loadEarlier={false}
-            isLoadingEarlier={false}
-            showUserAvatar={true}
-            inverted={false}
-          />
-        }
-      </View>
+      <GiftedChat
+        messages={this.props.messages}
+        onSend={(text) => {
+          this.props.sendMessage(text[0]);
+        }}
+        user={{
+          _id: 3,
+          avatar: 'https://randomuser.me/api/portraits/men/40.jpg',
+          name: this.props.currentUser,
+        }}
+        alwaysShowSend={true}
+        showUserAvatar={true}
+        inverted={false}
+        renderLoading={this.renderLoading}
+      />
     );
   }
 }
@@ -46,11 +41,11 @@ ChatRoomScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentUser: state.loginInfo.currentUser,
   messages: state.messages.messages,
   isLoading: state.messages.isLoading,
   currentMessage: state.messages.currentMessage,
-  messageId: state.messages.messageId
+  messageId: state.messages.messageId,
+  currentUser: state.loginInfo.currentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({

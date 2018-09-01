@@ -9,35 +9,32 @@ class UsersScreen extends React.Component {
   componentDidMount() {
     this.props.fetchFakeUsers();
   }
-  renderHeader = () => {
-    return <SearchBar placeholder="Type Here..." lightTheme round />;
-  };
-  renderSeparator = () => {
-    return (
-      <View style={{ height: 1, width: '86%', backgroundColor: '#CED0CE', marginLeft: '14%' }} />
-    );
-  };
+  renderHeader = () => <SearchBar placeholder="Type Here..." lightTheme round />;
+  renderSeparator = () => <View style={{ height: 1, width: '86%', backgroundColor: '#CED0CE', marginLeft: '14%' }} />;
 
   render() {
     return (
       <View>
-        <List containerStyle={{ marginTop: 0, borderTopWidth: 0, borderBottomWidth: 0 }}>
-          <FlatList
-            data={this.props.users }
-            renderItem={({ item }) => (
-              <ListItem
-                roundAvatar
-                title={`${item.name.first} ${item.name.last}`}
-                subtitle={item.email}
-                avatar={{ uri: item.picture.thumbnail }}
-                containerStyle={{ borderBottomWidth: 0 }}
-              />
-            )}
-            keyExtractor={item => item.login.uuid}
-            ItemSeparatorComponent={this.renderSeparator}
-            ListHeaderComponent={this.renderHeader}
-          />
-        </List>
+        { this.props.isLoading ? 
+          <ActivityIndicator size='large' style={{marginTop: '50%'}}/> : 
+          <List containerStyle={{ marginTop: 0, borderTopWidth: 0, borderBottomWidth: 0 }}>
+            <FlatList
+              data={this.props.users }
+              renderItem={({ item }) => (
+                <ListItem
+                  roundAvatar
+                  title={`${item.name.first} ${item.name.last}`}
+                  subtitle={item.email}
+                  avatar={{ uri: item.picture.thumbnail }}
+                  containerStyle={{ borderBottomWidth: 0 }}
+                />
+              )}
+              keyExtractor={item => item.login.uuid}
+              ItemSeparatorComponent={this.renderSeparator}
+              ListHeaderComponent={this.renderHeader}
+            />
+          </List>
+        }
       </View>  
     );
   }
