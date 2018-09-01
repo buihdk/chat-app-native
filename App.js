@@ -2,12 +2,13 @@ import React from 'react';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { messages, loginInfo } from './reducers';
+import { messages, users, loginInfo } from './reducers';
 import LoginScreen from './screens/LoginScreen';
 import TabNav from './components/BottomTabNavigator';
 
 const reducers = combineReducers({
   messages,
+  users,
   loginInfo
 });
 

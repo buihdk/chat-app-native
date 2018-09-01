@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Image } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import ConversationsScreen from '../screens/ConversationsScreen';
-import UsersScreen from '../screens/UsersScreen';
+import UsersScreen from '../screens/_UsersScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import ConversationDetailsScreen from '../screens/ConversationDetailsScreen';
 import { ChatRoomIcon, ConversationsIcon, UsersIcon } from './Icons';

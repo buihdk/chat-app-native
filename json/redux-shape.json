@@ -6,8 +6,12 @@
   },
   "users": {
     "users": [],
+    "firstLoad": true,
     "isLoading": false,
-    "isRefreshing": false
+    "isRefreshing": false,
+    "page": 1,
+    "seed": 1,
+    "error": null
   },
   "loginInfo": {
     "currentUser": "Alex"

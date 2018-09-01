@@ -6,13 +6,13 @@ export default class UsersScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      users: [],
       firstLoad: true,
       isLoading: false,
-      users: [],
+      isRefreshing: false,
       page: 1,
       seed: 1,
       error: null,
-      isRefreshing: false,
     };
   }
 
@@ -20,8 +20,7 @@ export default class UsersScreen extends React.Component {
     const { page, seed } = this.state;
     setTimeout(async () => {
       try {
-        let response = await fetch(`https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`);
-        let data = await response.json();
+        let data = await(await fetch(`https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`)).json();
         this.setState({ 
           users: page === 1 ? data.results : [...this.state.users, ...data.results],
           error: data.error || null,

@@ -1,12 +1,26 @@
 const initialState = {
-  messageId: 2,
-  messages: [],
-  isLoading: false,
-  isTyping: false,
-  currentMessage: '',
+  messages: {
+    messageId: 2,
+    messages: [],
+    isLoading: false,
+    isTyping: false,
+    currentMessage: '',
+  },
+  users: {
+    users: [],
+    firstLoad: true,
+    isLoading: false,
+    isRefreshing: false,
+    page: 1,
+    seed: 1,
+    error: null,
+  },
+  loginInfo: {
+    currentUser: 'Khoa'
+  }
 };
 
-export const messages = (state = initialState, action) => {
+export const messages = (state = initialState.messages, action) => {
   switch(action.type) {
   case 'START_LOAD_MESSAGES': {
     return {
@@ -30,14 +44,35 @@ export const messages = (state = initialState, action) => {
       //messages: newMessagesArray
     };
   }
-  case 'SET_CURRENT_MESSAGE':
+  case 'SET_CURRENT_MESSAGE': {
     return {
       ...state,
       currentMessage: action.message
     };
+  }
   default:
     return state;
   }
 };
 
-export const loginInfo = (state = { currentUser: 'Khoa' }, action) => state;
+export const users = (state = initialState.users, action) => {
+  switch(action.type) {
+  case 'START_FETCHING_USERS': {
+    return {
+      ...state,
+      isLoading: true
+    };
+  }
+  case 'FINISH_FETCHING_USERS': {
+    return {
+      ...state,
+      isLoading: false,
+      users: action.users
+    };
+  }
+  default:
+    return state;
+  }
+};
+
+export const loginInfo = (state = initialState.loginInfo, action) => state;
