@@ -1,26 +1,35 @@
 import React from 'react';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import ListExample from './List';
-import LoginScreen from './components/LoginScreen';
+import thunk from 'redux-thunk';
+import { messages, loginInfo } from './reducers';
+import LoginScreen from './screens/LoginScreen';
 import TabNav from './components/BottomTabNavigator';
 
-const reducer = (state = ['homework','exercise'], action) => state
+const reducers = combineReducers({
+  messages,
+  loginInfo
+});
 
-const store = createStore(reducer);
+const middleware = applyMiddleware(thunk);
+
+const store = createStore(reducers, middleware);
 
 export default class App extends React.Component {
   state = {
     isLoggedIn: false
   }
+  onLogoutPress() {
+    this.setState({isLoggedIn: false});
+  }
+
   render() {
-    console.log('ji')
     return (
       <Provider store={store}>
         { this.state.isLoggedIn ? 
           <TabNav screenProps={{
-            // onLogoutPress: this.setState({isLoggedIn: false})
-           }} />
+            onLogoutPress: this.onLogoutPress.bind(this)
+          }} />
           //<ListExample onLogoutPress={() => this.setState({isLoggedIn: false})} />
           : <LoginScreen onLoginPress={() => this.setState({isLoggedIn: true})} />
         }

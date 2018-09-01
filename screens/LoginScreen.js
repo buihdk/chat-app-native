@@ -1,5 +1,6 @@
-import React from "react";
-import { View, Image, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from "react-native";
+import React from 'react';
+import { View, Image, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import PropTypes from 'prop-types';
 
 const LoginScreen = (props) => {
   return (
@@ -8,7 +9,7 @@ const LoginScreen = (props) => {
         <Image
           resizeMode="contain"
           style={styles.logo}
-          source={require("../assets/oms-logo.png")}
+          source={require('../assets/instaChat.png')}
         />
       </View>
       <View style={styles.formContainer}>
@@ -38,19 +39,23 @@ const LoginScreen = (props) => {
   );
 };
 
+LoginScreen.propTypes = {
+  onLoginPress: PropTypes.func.isRequired
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#2c3e50"
+    backgroundColor: '#2c3e50'
   },
   loginContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     flexGrow: 1,
-    justifyContent: "center"
+    justifyContent: 'center'
   },
   logo: {
-    position: "absolute",
+    position: 'absolute',
     width: 300,
     height: 100
   }, 

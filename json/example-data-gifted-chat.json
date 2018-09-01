@@ -1,0 +1,84 @@
+{
+  "messages": [
+    {
+      "_id": 0,
+      "createdAt": "2018-08-23T19:01:00.474Z",
+      "text": "Hello World",
+      "user": {
+        "_id": 0,
+        "name": "Jennifer",
+        "avatar": "https://randomuser.me/api/portraits/women/40.jpg"
+      }
+    },
+    {
+      "_id": 1,
+      "createdAt": "2018-08-23T19:01:08.347Z",
+      "text": "Is anyone here?",
+      "user": {
+        "_id": 1,
+        "name": "Rose",
+        "avatar": "https://randomuser.me/api/portraits/women/59.jpg"
+      }
+    },
+    {
+      "_id": 2,
+      "createdAt": "2018-08-23T19:01:00.474Z",
+      "text": "Yes, I am here!",
+      "user": {
+        "_id": 0,
+        "name": "Jennifer",
+        "avatar": "https://randomuser.me/api/portraits/women/40.jpg"
+      }
+    },
+    {
+      "_id": 3,
+      "createdAt": "2018-08-23T19:01:08.347Z",
+      "text": "What are you doing here?",
+      "user": {
+        "_id": 1,
+        "name": "Rose",
+        "avatar": "https://randomuser.me/api/portraits/women/59.jpg"
+      }
+    },
+    {
+      "_id": 4,
+      "createdAt": "2018-08-23T19:01:00.474Z",
+      "text": "Here to check out the land of no man",
+      "user": {
+        "_id": 0,
+        "name": "Jennifer",
+        "avatar": "https://randomuser.me/api/portraits/women/40.jpg"
+      }
+    },
+    {
+      "_id": 5,
+      "createdAt": "2018-08-23T19:01:08.347Z",
+      "text": "OMG!!",
+      "user": {
+        "_id": 1,
+        "name": "Rose",
+        "avatar": "https://randomuser.me/api/portraits/women/59.jpg"
+      }
+    },
+    {
+      "_id": 6,
+      "createdAt": "2018-08-23T19:01:00.474Z",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "user": {
+        "_id": 0,
+        "name": "Jennifer",
+        "avatar": "https://randomuser.me/api/portraits/women/40.jpg"
+      }
+    },
+    {
+      "_id": 7,
+      "createdAt": "2018-08-23T19:01:08.347Z",
+      "text": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "user": {
+        "_id": 1,
+        "name": "Rose",
+        "avatar": "https://randomuser.me/api/portraits/women/59.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "sender": "Khoa",
+      "text": "Hello World",
+      "timestamp": "1534922693248"
+    },
+    {
+      "sender": "Khoa",
+      "text": "Is anyone here?",
+      "timestamp": "1534923101094"
+    }
+  ]
+}

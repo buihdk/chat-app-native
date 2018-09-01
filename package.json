@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "1.14.0",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.4.0",
+    "eslint-plugin-react": "^7.11.1",
     "jest-expo": "~27.0.0",
+    "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -19,14 +22,22 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "ajv": "^6.5.3",
     "expo": "^27.0.1",
-    "react": "16.3.1",
-    "react-native": "~0.55.2",
+    "express": "^4.16.3",
+    "firebase": "^5.4.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.3.1",
+    "react-dom": "^16.4.2",
+    "react-native": "^0.55.4",
+    "react-native-elements": "^0.19.1",
     "react-native-gifted-chat": "^0.4.3",
     "react-native-socket.io-client": "^1.4.8",
     "react-native-vector-icons": "^5.0.0",
+    "react-native-web": "^0.8.9",
     "react-navigation": "^2.11.2",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   }
 }

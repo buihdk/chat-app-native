@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const UsersScreen = (props) => {
+const ConversationDetailsScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>UsersScreen</Text>
+      <Text>ConversationDetailsScreen</Text>
     </View>
   );
 };
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UsersScreen;
+export default ConversationDetailsScreen;

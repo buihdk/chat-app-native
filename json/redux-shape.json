@@ -1,0 +1,15 @@
+{
+  "messages": {
+    "messages": [],
+    "isLoading": false,
+    "isTyping": false
+  },
+  "users": {
+    "users": [],
+    "isLoading": false,
+    "isRefreshing": false
+  },
+  "loginInfo": {
+    "currentUser": "Alex"
+  }
+}
