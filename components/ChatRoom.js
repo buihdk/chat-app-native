@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadMessages , sendMessage, setCurrentMessage } from '../actions';
+import { loadMessages , sendMessage, setCurrentMessage } from '../utils/actions';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import PropTypes from 'prop-types';
 

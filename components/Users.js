@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchFakeUsers } from '../actions';
+import { fetchFakeUsers } from '../utils/actions';
 import UsersScreen from '../screens/UsersScreen';
 import PropTypes from 'prop-types';
 

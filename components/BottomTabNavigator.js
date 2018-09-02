@@ -5,7 +5,7 @@ import ConversationsScreen from '../screens/_ConversationsScreen';
 import Users from './Users';
 import ChatRoom from './ChatRoom';
 import ConversationDetailsScreen from '../screens/ConversationDetailsScreen';
-import { ChatRoomIcon, ConversationsIcon, UsersIcon } from './Icons';
+import { ChatRoomIcon, ConversationsIcon, UsersIcon } from '../assets/Icons';
 
 const ChatRoomStack = createStackNavigator(
   {

@@ -1,4 +1,4 @@
-import firebase from './utils/firebase';
+import firebase from './firebase';
 
 export const loadMessages = () => (dispatch) => {
   dispatch(startLoadMessages());
