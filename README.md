@@ -8,6 +8,7 @@ Author: **Khoa Bui**
 * [ ] Conversation screen
 * [ ] User management
 * [ ] Login screen with authentication
+* [x] Separated *presentational* and *container* components
 * [x] User screen styled with react-native-elements and randomuser api
 * [x] Chat Room screen styled with react-native-gifted-chat
 * [x] React Navigation for switching different screens
@@ -15,10 +16,8 @@ Author: **Khoa Bui**
 * [x] Redux Thunk for managing asynchronous state
 * [x] Redux for better state management
 
-App state management using Redux and Redux Thunk
-
 ## Demo
-https://www.buihdk.com/mini-twitter/
+(coming)
 
 ## License
     © Khoa Bui 2018 

@@ -2,14 +2,11 @@ const initialState = {
   messages: {
     messageId: 2,
     messages: [],
-    isLoading: false,
     isTyping: false,
     currentMessage: '',
   },
   users: {
     users: [],
-    firstLoad: true,
-    isLoading: false,
     isRefreshing: false,
     page: 1,
     seed: 1,
@@ -25,23 +22,18 @@ export const messages = (state = initialState.messages, action) => {
   case 'START_LOAD_MESSAGES': {
     return {
       ...state,
-      isLoading: true
     };
   }
   case 'FINISH_LOAD_MESSAGES': {
     return {
       ...state,
-      isLoading: false,
       messages: action.messages
     };
   }
   case 'RECEIVE_MESSAGE': {
-    //let newMessagesArray = state.messages.slice();
-    //newMessagesArray.unshift(action.message);
     return {
       ...state,
       messages: state.messages.concat(action.message)
-      //messages: newMessagesArray
     };
   }
   case 'SET_CURRENT_MESSAGE': {
@@ -60,13 +52,11 @@ export const users = (state = initialState.users, action) => {
   case 'START_FETCHING_USERS': {
     return {
       ...state,
-      isLoading: true
     };
   }
   case 'FINISH_FETCHING_USERS': {
     return {
       ...state,
-      isLoading: false,
       users: action.users
     };
   }

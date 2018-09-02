@@ -1,25 +1,81 @@
 import React from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native';
-import { connect } from 'react-redux';
-import { fetchFakeUsers } from '../actions';
 import { SearchBar, List, ListItem } from 'react-native-elements';
-import PropTypes from 'prop-types';
 
-class UsersScreen extends React.Component {
-  componentDidMount() {
-    this.props.fetchFakeUsers();
+export default class UsersScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+      firstLoad: true,
+      isLoading: false,
+      isRefreshing: false,
+      page: 1,
+      seed: 1,
+      error: null,
+    };
   }
-  renderHeader = () => <SearchBar placeholder="Type Here..." lightTheme round />;
-  renderSeparator = () => <View style={{ height: 1, width: '86%', backgroundColor: '#CED0CE', marginLeft: '14%' }} />;
+
+  fetchFakeUsers() {
+    const { page, seed } = this.state;
+    setTimeout(async () => {
+      try {
+        let data = await(await fetch(`https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`)).json();
+        this.setState({ 
+          users: page === 1 ? data.results : [...this.state.users, ...data.results],
+          error: data.error || null,
+          firstLoad: false,
+          isLoading: false,
+          isRefreshing: false
+        });
+      } catch(error) { 
+        this.setState({ error, firstLoad: false, isLoading: false, isRefreshing: false });
+        alert(error); 
+      }
+    }, 500);  
+  }
+  handleRefresh = () => {
+    this.setState({
+      page: 1,
+      seed: this.state.seed + 1,
+      isRefreshing: true
+    }, () => { this.fetchFakeUsers(); });
+  };
+  handleLoadMore = () => {
+    this.setState({
+      page: this.state.page + 1,
+      isLoading: true
+    }, () => { this.fetchFakeUsers(); });
+  };
+  renderHeader = () => {
+    return <SearchBar placeholder="Type Here..." lightTheme round />;
+  };
+  renderSeparator = () => {
+    return (
+      <View style={{ height: 1, width: '86%', backgroundColor: '#CED0CE', marginLeft: '14%' }} />
+    );
+  };
+  renderFooter = () => {
+    if (!this.state.isLoading) return null;
+    return (
+      <View style={{paddingVertical: 20, borderTopWidth: 1, borderColor: '#CED0CE'}}>
+        <ActivityIndicator animating size="large" />
+      </View>
+    );
+  };
+
+  componentDidMount() {
+    this.fetchFakeUsers();
+  }
 
   render() {
     return (
       <View>
-        { this.props.isLoading ? 
+        { this.state.firstLoad ? 
           <ActivityIndicator size='large' style={{marginTop: '50%'}}/> : 
           <List containerStyle={{ marginTop: 0, borderTopWidth: 0, borderBottomWidth: 0 }}>
             <FlatList
-              data={this.props.users }
+              data={this.state.users}
               renderItem={({ item }) => (
                 <ListItem
                   roundAvatar
@@ -32,6 +88,11 @@ class UsersScreen extends React.Component {
               keyExtractor={item => item.login.uuid}
               ItemSeparatorComponent={this.renderSeparator}
               ListHeaderComponent={this.renderHeader}
+              ListFooterComponent={this.renderFooter}
+              onRefresh={this.handleRefresh}
+              refreshing={this.state.isRefreshing}
+              onEndReached={this.handleLoadMore}
+              onEndReachedThreshold={10}
             />
           </List>
         }
@@ -39,25 +100,3 @@ class UsersScreen extends React.Component {
     );
   }
 }
-
-UsersScreen.propTypes = {
-  fetchFakeUsers: PropTypes.func.isRequired, 
-  isLoading: PropTypes.bool.isRequired, 
-  users: PropTypes.array.isRequired, 
-};
-
-const mapStateToProps = (state) => ({
-  users: state.users.users,
-  firstLoad: state.users.firstLoad,
-  isLoading: state.users.isLoading,
-  isRefreshing: state.users.isRefreshing,
-  page: state.users.page,
-  seed: state.users.seed,
-  error: state.users.error,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchFakeUsers: () => dispatch(fetchFakeUsers()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersScreen);

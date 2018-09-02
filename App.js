@@ -33,8 +33,7 @@ export default class App extends React.Component {
           }} />
           //<ListExample onLogoutPress={() => this.setState({isLoggedIn: false})} />
           : <LoginScreen onLoginPress={() => this.setState({isLoggedIn: true})} />
-        }
-            
+        }    
       </Provider>
     );
   }

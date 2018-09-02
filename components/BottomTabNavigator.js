@@ -1,16 +1,16 @@
 import React from 'react';
 import { Text, Image } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import ConversationsScreen from '../screens/ConversationsScreen';
-import UsersScreen from '../screens/_UsersScreen';
-import ChatRoomScreen from '../screens/ChatRoomScreen';
+import ConversationsScreen from '../screens/_ConversationsScreen';
+import Users from './Users';
+import ChatRoom from './ChatRoom';
 import ConversationDetailsScreen from '../screens/ConversationDetailsScreen';
 import { ChatRoomIcon, ConversationsIcon, UsersIcon } from './Icons';
 
 const ChatRoomStack = createStackNavigator(
   {
     ChatRoom: { 
-      screen: ChatRoomScreen,
+      screen: ChatRoom,
       navigationOptions: { 
         title: 'Chat Room',
         headerLeft: ( <Image style={{height: 38, width: 50}} source={require('../assets/instaChat.png')} /> ),
@@ -24,7 +24,7 @@ const ChatRoomStack = createStackNavigator(
 const UsersStack = createStackNavigator(
   {
     Users: { 
-      screen: UsersScreen,
+      screen: Users,
       navigationOptions: { 
         title: 'Users',
         headerLeft: ( <Image style={{height: 38, width: 50,}} source={require('../assets/instaChat.png')} /> ),
