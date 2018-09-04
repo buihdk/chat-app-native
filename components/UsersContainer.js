@@ -1,10 +1,20 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchFakeUsers } from '../utils/actions';
+import AppSettingsDropDown from './AppSettingsDropDown';
+import AppInfoModal from './AppInfoModal';
 import UsersScreen from '../screens/UsersScreen';
 import PropTypes from 'prop-types';
 
-class Users extends React.Component {
+class UsersContainer extends React.Component {
+  static navigationOptions = ({navigation}) => {  
+    return {
+      headerLeft: <AppSettingsDropDown navigate = {navigation.navigate}/>,
+      headerTitle: <Text style={{color:'#3a5998', fontSize: 20, fontWeight: 'bold'}}>Users</Text>,
+      headerRight: <AppInfoModal />,
+    };
+  };
   componentDidMount() {
     this.props.fetchFakeUsers();
   }
@@ -18,7 +28,7 @@ class Users extends React.Component {
   }
 }
 
-Users.propTypes = {
+UsersContainer.propTypes = {
   fetchFakeUsers: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired, 
 };
@@ -35,4 +45,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchFakeUsers: () => dispatch(fetchFakeUsers()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

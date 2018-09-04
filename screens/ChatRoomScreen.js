@@ -4,6 +4,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import PropTypes from 'prop-types';
 
 const ChatRoomScreen = (props) => {
+  
   if (props.messages.length < 1 || props.messages == undefined)
     return <ActivityIndicator size='large' style={{marginTop: '50%'}}/>;
   

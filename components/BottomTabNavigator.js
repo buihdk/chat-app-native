@@ -1,36 +1,28 @@
-import React from 'react';
-import { Text, Image } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import ConversationsScreen from '../screens/_ConversationsScreen';
-import Users from './Users';
-import ChatRoom from './ChatRoom';
+import { createStackNavigator, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
+import LoginContainer from './LoginContainer';
+import ChatRoomContainer from './ChatRoomContainer';
+import UsersContainer from './UsersContainer';
+import ConversationsContainer from './ConversationsContainer';
 import ConversationDetailsScreen from '../screens/ConversationDetailsScreen';
 import { ChatRoomIcon, ConversationsIcon, UsersIcon } from '../assets/Icons';
 
-const ChatRoomStack = createStackNavigator(
-  {
-    ChatRoom: { 
-      screen: ChatRoom,
-      navigationOptions: { 
-        title: 'Chat Room',
-        headerLeft: ( <Image style={{height: 38, width: 50}} source={require('../assets/instaChat.png')} /> ),
-        headerTitle: ( <Text style={{color:'#3a5998', fontSize: 20, fontWeight: 'bold'}}>Chat Room</Text> ),
-        // headerRight: ( <AppInfoModal /> ),
-      },
-    },
-  },
-);
+const Authentication = createStackNavigator({
+  Login: LoginContainer
+});
+
+const ChatRoomStack = createStackNavigator({
+  ChatRoom: ChatRoomContainer
+});
+
+const ConversationsStack = createStackNavigator({
+  Conversations: ConversationsContainer,
+  ConversationDetails: ConversationDetailsScreen,
+});
 
 const UsersStack = createStackNavigator(
   {
     Users: { 
-      screen: Users,
-      navigationOptions: { 
-        title: 'Users',
-        headerLeft: ( <Image style={{height: 38, width: 50,}} source={require('../assets/instaChat.png')} /> ),
-        headerTitle: ( <Text style={{color:'#e50914', fontSize: 20, fontWeight: 'bold'}}>Users</Text> ),
-        // headerRight: ( <AppInfoModal /> ),
-      },
+      screen: UsersContainer,
     },
     UserDetails: { 
       screen: ConversationDetailsScreen,
@@ -46,32 +38,7 @@ const UsersStack = createStackNavigator(
   },
 );
 
-const ConversationsStack = createStackNavigator(
-  {
-    Conversations: { 
-      screen: ConversationsScreen,
-      navigationOptions: { 
-        title: 'Conversations',
-        headerLeft: ( <Image style={{height: 38, width: 50}} source={require('../assets/instaChat.png')} /> ),
-        headerTitle: ( <Text style={{color:'#e50914', fontSize: 20, fontWeight: 'bold'}}>Conversations</Text> ),
-        // headerRight: ( <AppInfoModal /> ),
-      },
-    },
-    ConversationDetails: { 
-      screen: ConversationDetailsScreen,
-      // navigationOptions: 
-      //   ({navigation}) => { 
-      //     return { 
-      //       headerTitle: navigation.getParam('movie').title }; 
-      //   }
-    }
-  },
-  {
-    initialRouteName: 'Conversations'
-  },
-);
-
-export default createBottomTabNavigator(
+const App = createBottomTabNavigator(
   {
     ChatRoom: {
       screen: ChatRoomStack,
@@ -80,6 +47,19 @@ export default createBottomTabNavigator(
         return { 
           tabBarLabel: 'Chat Room',
           tabBarIcon: ChatRoomIcon,
+          tabBarOnPress: ({defaultHandler}) => {
+            defaultHandler();
+          }
+        };
+      }
+    },
+    Users: {
+      screen: UsersStack,
+      path: '/users',
+      navigationOptions: ({screenProps}) => { 
+        return { 
+          tabBarLabel: 'Users',
+          tabBarIcon: UsersIcon,
           tabBarOnPress: ({defaultHandler}) => {
             // screenProps.handleRefresh('top_rated');
             defaultHandler();
@@ -101,21 +81,11 @@ export default createBottomTabNavigator(
         };
       },
     },
-    Users: {
-      screen: UsersStack,
-      path: '/users',
-      navigationOptions: ({screenProps}) => { 
-        return { 
-          tabBarLabel: 'Users',
-          tabBarIcon: UsersIcon,
-          tabBarOnPress: ({defaultHandler}) => {
-            // screenProps.handleRefresh('top_rated');
-            defaultHandler();
-          }
-        };
-      }
-    },
-    
     /* Other configuration remains unchanged */
   },
 );
+
+export default createSwitchNavigator({
+  Auth: Authentication,
+  App: App
+});

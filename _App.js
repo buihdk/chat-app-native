@@ -3,7 +3,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { messages, users, loginInfo } from './utils/reducers';
-import RootNavigation from './components/BottomTabNavigator';
+import LoginScreen from './screens/LoginScreen';
+import TabNav from './components/BottomTabNavigator';
 
 const reducers = combineReducers({
   messages,
@@ -16,12 +17,23 @@ const middleware = applyMiddleware(thunk);
 const store = createStore(reducers, middleware);
 
 export default class App extends React.Component {
+  state = {
+    isLoggedIn: false
+  }
+  onLogoutPress() {
+    this.setState({isLoggedIn: false});
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <RootNavigation screenProps={{ 
-
-        }}/>
+        { this.state.isLoggedIn ? 
+          <TabNav screenProps={{
+            onLogoutPress: this.onLogoutPress.bind(this)
+          }} />
+          //<ListExample onLogoutPress={() => this.setState({isLoggedIn: false})} />
+          : <LoginScreen onLoginPress={() => this.setState({isLoggedIn: true})} />
+        }    
       </Provider>
     );
   }
